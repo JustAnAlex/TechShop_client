@@ -1,0 +1,47 @@
+$plum: rgb(243, 121, 28);
+$black: rgb(0, 0, 0);
+$width: 100%/4;
+
+.device_list {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(243, 121, 28);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(auto, auto);
+    grid-gap: 10px;
+}
+
+.device {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.img_wrapper:before {
+    content: "";
+    padding-top: 100%;
+    float: left;
+}
+
+img {
+    object-fit: cover;
+    border-radius: 10px;
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+
+.type {
+    font-size: 25px;
+    overflow: hidden;
+}
+
+.model {
+    font-size: 25px;;
+}
+

@@ -1,0 +1,25 @@
+$plum: rgb(243, 121, 28);
+
+.menu {
+    border-radius: 10px;
+    border: 2px solid $plum;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: 200px;
+}
+
+.menu_item {
+    font-size: 20px;
+    cursor: pointer;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+.menu_item:hover {
+    background-color: $plum;
+}
+
+.hr {
+	background-color: $plum;
+}
