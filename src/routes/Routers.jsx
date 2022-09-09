@@ -5,29 +5,12 @@ import MainPage from '../page/main/MainPage';
 import Registration from '../page/registration/Registration';
 import About from "../page/About";
 import Basket from "../page/Basket";
-import AdminPanel from "../page/AdminPanel";
+import AdminPanel from "../page/adminPage/AdminPanel";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
-import API from "../http/API";
 
 const Routers = observer(() => {
     const {user} = useContext(Context)
-
-    // const toPage = useNavigate()
-    //
-    // useEffect(() => {
-    //     API.checkAuthorization()
-    //         .then((data)=>{
-    //                 user.data = data
-    //                 user.isAuth = true
-    //                 // toPage('/shop')
-    //             }
-    //         )
-    //         .catch(e => {
-    //             // toPage('/login')
-    //         })
-    // })
-
 
     return (
         <Routes>

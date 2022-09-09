@@ -7,11 +7,12 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../../index";
 
 const Menu = observer(() => {
-    //console.log('render menu')
     const {type} = useContext(Context)
     const {isLoading, data} = type
 
-    useEffect( () => {type.loadTypes()}, [] )
+    useEffect( () => {type.loadTypes()
+        console.log('load types')
+    }, [] )
 
     return (
         <div className={styles.menu}>

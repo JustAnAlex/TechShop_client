@@ -1,5 +1,6 @@
-import {makeAutoObservable, runInAction} from "mobx";
 import axios from "axios";
+import {makeAutoObservable, runInAction} from "mobx";
+import API from "../http/API";
 
 class DeviceReducer {
     isLoading = false
@@ -10,15 +11,9 @@ class DeviceReducer {
         makeAutoObservable(this)
     }
 
-    async loadDevice(typeId=null) {
+    async loadDevice(typeId=null, brandId=null) {
         this.isLoading = true
-        const answer = await axios({
-            method: 'get',
-            url: '/api/device',
-            params: {
-                typeId
-            }
-        })
+        const answer = await API.loadDevice(typeId=typeId, brandId=brandId)
         runInAction(() => {
             this.data = answer.data.rows
             this.count = answer.data.count

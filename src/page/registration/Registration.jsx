@@ -34,17 +34,22 @@ const Registration = () => {
         <form className={styles.grid_container}>
             <div className={styles.root}>
                 <div className={styles.description}>Регистрация</div>
+
+                <label>Email address</label>
                 <input
-                    ref={formData.email}
-                    placeholder="Email"
                     className={styles.usernameFill}
+                    ref={formData.email}
+                    placeholder="example@mail.tu"
+                    type='email'
                 />
+
+                <label>Password</label>
                 <input
-                    ref={formData.password}
-                    placeholder="Пароль"
-                    type='password'
                     className={styles.passwordFill}
+                    ref={formData.password}
+                    type='password'
                 />
+
                 <div className={styles.footer}>
                     <div>
                         <span>Есть аккаунт?</span>
@@ -52,7 +57,6 @@ const Registration = () => {
                     </div>
                     <button
                         type='submit'
-                        className={styles.button_submit}
                         onClick={(e) => sendData(e)}
                     >Зарегистрировать
                     </button>

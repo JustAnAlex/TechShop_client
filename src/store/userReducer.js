@@ -25,6 +25,10 @@ class UserReducer {
         this._isAdmin = bool
     }
 
+    get data() {
+        return this._data
+    }
+
     set data(data) {
         this._data = data
     }

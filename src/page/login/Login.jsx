@@ -23,6 +23,9 @@ const Login = () => {
             .then((data)=>{
                     user.data = data
                     user.isAuth = true
+                    if (data?.role === 'ADMIN') {
+                        user.isAdmin = true
+                    }
                     toPage('/shop')
                 }
             )
@@ -34,17 +37,22 @@ const Login = () => {
         <form className={styles.grid_container}>
             <div className={styles.root}>
                 <div className={styles.description}>Авторизация</div>
+                
+                <label>Email address</label>
                 <input
-                    ref={formData.email}
-                    placeholder="Email"
                     className={styles.usernameFill}
+                    ref={formData.email}
+                    placeholder="example@mail.tu"
+                    type='email'
                 />
+
+                <label>Password</label>
                 <input
-                    ref={formData.password}
-                    placeholder="Пароль"
-                    type='password'
                     className={styles.passwordFill}
+                    ref={formData.password}
+                    type='password'
                 />
+
                 <div className={styles.footer}>
                     <div>
                         <span>Нет аккаунта?</span>
@@ -52,11 +60,11 @@ const Login = () => {
                     </div>
                     <button
                         type='submit'
-                        className={styles.button_submit}
                         onClick={(e) => sendData(e)}
                     >Войти
                     </button>
                 </div>
+
             </div>
         </form>
       );

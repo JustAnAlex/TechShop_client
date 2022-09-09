@@ -1,10 +1,11 @@
 import {makeAutoObservable, runInAction} from "mobx";
-import axios from "axios";
+import API from "../http/API";
 
 class TypesReducer {
     isLoading = false
     data = null
     currentType = null
+    currentBrand = null
 
     constructor() {
         makeAutoObservable(this)
@@ -12,16 +13,13 @@ class TypesReducer {
 
     async loadTypes() {
         this.isLoading = true
-        const answer = await axios({
-            method: 'get',
-            url: '/api/type'
-        })
+        const answer = await API.loadTypes()
         runInAction(() => {
             this.data = answer.data
             this.isLoading = false
-            if (answer.data.length) {
-                //this.currentType = answer.data?.[0]?.id
-            }
+            // if (answer.data.length) {
+            //     this.currentType = answer.data?.[0]?.id
+            // }
         })
     }
 

@@ -1,0 +1,22 @@
+$margin: 10px;
+
+.admin {
+    margin: $margin $margin $margin $margin;
+    width: calc(100% - 2*$margin);
+    //border: 2px solid black;
+    //height: 90vh;
+    
+    .add_Device {
+        display: grid;
+        justify-items: start;
+        grid-gap: 5px;
+
+        input {
+            font-size: 20px;
+        }
+
+        button {
+            font-size: 20px;
+        }
+    }
+}

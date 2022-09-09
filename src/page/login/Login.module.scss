@@ -3,103 +3,113 @@ $white: rgb(255, 255, 255);
 $plum: rgb(243, 121, 28);
 $transparent-white: rgb(255, 255, 255);
 
-
+//width: calc(100% - 50px);
 .grid_container {
     background-color: $black;
     display: grid;
     grid-template-columns: 1fr;
-    justify-content: center;
+    justify-items: center;
     align-items: center;
     color: $white;
     height: calc(100vh - 50px);
     width: 100%;
+
+    .root {
+        width: calc(100% - 50px);
+        max-width: 500px;
+        background-color: $black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: $white;
+
+        .description{
+            font-size: 26px;
+            background-color: $black;
+            padding-bottom: 15px;
+            text-align: center;
+            color: $white;
+        }
+
+        label {
+            align-self: start;
+            margin-left: 25px;
+            margin-bottom: 5px;
+        }
+
+        .usernameFill {
+            width: calc(100% - 50px);
+            max-width: 450px;
+            height: calc(12.08% - 18px);
+            border-radius: 20px;
+            padding: 9px 0px 9px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            border: 2px solid $plum;
+            background-color: $black;
+            color: $white;
+        }
+ 
+        .passwordFill {
+            width: calc(100% - 50px);
+            max-width: 450px;
+            height: calc(12.08% - 18px);
+            margin-bottom: 10px;
+            border-radius: 20px;
+            padding: 9px 0px 9px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            border: 2px solid $plum;
+            background-color: $black;
+            color: $white;
+        }
+
+        .footer {
+            width: calc(100% - 33px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .redirect {
+                background-color: $plum;
+                border-radius: 20px;
+                padding: 10px 10px;
+                margin-left: 5px;
+                color: $white;
+                text-decoration:none;
+            }
+            
+            button {
+                width: auto;
+                height: calc(12.75% - 20px);
+                background-color: $plum;
+                border-radius: 20px;
+                padding: 10px 53px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+
+                &:hover {
+                    background: #fff;
+                }
+
+                &:active {
+                    background: #d0d3d6;
+                    background-image: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,0));
+                    box-shadow: inset 0 0 2px rgba(0,0,0,.2), inset 0 2px 5px rgba(0,0,0,.2), 0 1px rgba(255,255,255,.2);
+                }
+            }
+        }
+    }
 }
 
-.root {
-    background-color: $black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: $white;
-}
-
-.description{
-    font-size: 26px;
-    background-color: $black;
-    padding-bottom: 15px;
-    text-align: center;
-    color: $white;
-}
-
-.username {
-    color: $transparent-white;
-}
-
-.usernameFill {
-    width: calc(100% - 50px);
-    max-width: 450px;
-    height: calc(12.08% - 18px);
-    margin-bottom: 18px;
-    border-radius: 20px;
-    padding: 9px 0px 9px 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    border: 2px solid $plum;
-    background-color: $black;
-    color: $white;
-}
-.passwordFill {
-    width: calc(100% - 50px);
-    max-width: 450px;
-    height: calc(12.08% - 18px);
-    margin-bottom: 18px;
-    border-radius: 20px;
-    padding: 9px 0px 9px 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    border: 2px solid $plum;
-    background-color: $black;
-    color: $white;
-}
 
 
-.footer {
-    width: calc(100% - 50px);
-    max-width: 450px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.redirect {
-    background-color: $plum;
-    border-radius: 20px;
-    padding: 10px 10px;
-    margin-left: 5px;
-    color: $white;
-}
 
-.button_submit {
-    width: auto;
-    height: calc(12.75% - 20px);
-    background-color: $plum;
-    border-radius: 20px;
-    padding: 10px 53px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
 
-.button_submit:hover {
-    background: #fff;
-  }
 
-.button_submit:active {
-    background: #d0d3d6;
-    background-image: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,0));
-    box-shadow: inset 0 0 2px rgba(0,0,0,.2), inset 0 2px 5px rgba(0,0,0,.2), 0 1px rgba(255,255,255,.2);
-  }
