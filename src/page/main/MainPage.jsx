@@ -1,4 +1,5 @@
 import React from 'react';
+
 import DeviceList from '../../components/devices/DeviceList';
 import Menu from '../../components/menu/Menu';
 import styles from './MainPage.module.scss'

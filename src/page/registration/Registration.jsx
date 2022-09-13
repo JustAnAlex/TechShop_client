@@ -13,7 +13,6 @@ const Registration = () => {
         email: useRef(),
         password: useRef()
     }
-
     const sendData = async (e) => {
         e.preventDefault()
         const data = {
@@ -21,13 +20,12 @@ const Registration = () => {
             password: formData.password.current.value
         }
         API.registration(data)
-            .then((data)=>{
-                user.data = data
-                user.isAuth = true
-                toPage('/shop')
-                }
-            )
-            .catch(({message, response} )=> console.log(message, response?.data?.message))
+        .then((data)=>{
+            user.data = data
+            user.isAuth = true
+            toPage('/shop')
+        })
+        .catch(({message, response} )=> console.log(message, response?.data?.message))
     }
 
     return (
@@ -63,8 +61,8 @@ const Registration = () => {
                 </div>
             </div>
         </form>
-    );
-};
+    )
+}
 
 export default Registration;
 

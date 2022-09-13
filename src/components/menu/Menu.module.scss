@@ -1,25 +1,37 @@
-$plum: rgb(243, 121, 28);
+@import '../../style/themeColor.scss';
+
+$radius: 10px;
 
 .menu {
-    border-radius: 10px;
+    border-radius: $radius;
     border: 2px solid $plum;
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
     max-width: 200px;
+
+    .menu_item {
+        font-size: 20px;
+        cursor: pointer;
+        padding-bottom: 3px;
+        padding-top: 3px;
+
+        &:hover {
+            background-color: $plum;
+        }
+    }
+
+    .hr {
+        background-color: $plum;
+    }
+
+    .all_item {
+        background-color: $plum;
+        border-bottom-left-radius: $radius;
+        border-bottom-right-radius: $radius;
+    }
 }
 
-.menu_item {
-    font-size: 20px;
-    cursor: pointer;
-    padding-bottom: 3px;
-    padding-top: 3px;
-}
 
-.menu_item:hover {
-    background-color: $plum;
-}
 
-.hr {
-	background-color: $plum;
-}
+

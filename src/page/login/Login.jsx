@@ -20,18 +20,16 @@ const Login = () => {
             password: formData.password.current.value
         }
         API.login(data)
-            .then((data)=>{
-                    user.data = data
-                    user.isAuth = true
-                    if (data?.role === 'ADMIN') {
-                        user.isAdmin = true
-                    }
-                    toPage('/shop')
-                }
-            )
-            .catch(({message, response} )=> console.log(message, response?.data?.message))
+        .then((data)=>{
+            user.data = data
+            user.isAuth = true
+            if (data?.role === 'ADMIN') {
+                user.isAdmin = true
+            }
+            toPage('/shop')
+        })
+        .catch(({message, response} )=> console.log(message, response?.data?.message))
     }
-
 
     return (
         <form className={styles.grid_container}>
@@ -67,7 +65,7 @@ const Login = () => {
 
             </div>
         </form>
-      );
-};
+    )
+}
 
 export default Login;

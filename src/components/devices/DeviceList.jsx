@@ -1,8 +1,8 @@
 import React from 'react';
 import {useEffect, useContext} from 'react';
+import {observer} from "mobx-react-lite";
 
 import styles from './Device.module.scss'
-import {observer} from "mobx-react-lite";
 import getUniqueId from "../../utils/uniqueId";
 import {Context} from "../../index";
 import Device from './Device';
@@ -16,7 +16,7 @@ const DeviceList = observer(() => {
     },[type.currentType, type.currentBrand])
 
     return (
-        <div className={`${styles.device_list}`}>
+        <div className={styles.device_list}>
             {
             (!device.isLoading && device.count)
                 ?
@@ -27,12 +27,13 @@ const DeviceList = observer(() => {
                 />
             )
                 :
-            [{name:'', price:''}, {name:'', price:''}].map(data =>
-                <Device
-                    key={getUniqueId()}
-                    data={data}
-                />
-            )
+                <>no data</>
+            // [{name:'', price:''}, {name:'', price:''}].map(data =>
+            //     <Device
+            //         key={getUniqueId()}
+            //         data={data}
+            //     />
+            // )
             }
         </div>
     );

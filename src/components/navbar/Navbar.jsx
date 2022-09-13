@@ -1,12 +1,11 @@
 import React, {useContext} from 'react';
 import {Link, useNavigate} from "react-router-dom";
+import { observer } from 'mobx-react-lite';
 
 import styles from './Navbar.module.scss'
 import {Context} from "../../index";
-import { observer } from 'mobx-react-lite';
 
 const Navbar = observer(() => {
-    
     const {user} = useContext(Context)
     const toPage = useNavigate()
 

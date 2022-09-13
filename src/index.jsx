@@ -8,10 +8,8 @@ import TypeReducer from "./store/typeReducer";
 import DeviceReducer from "./store/deviceReducer";
 import UserReducer from "./store/userReducer";
 
-
 export const Context = createContext(null)
 const root = ReactDOM.createRoot(document.getElementById('root'))
-
 
 root.render(
     <Context.Provider value={{

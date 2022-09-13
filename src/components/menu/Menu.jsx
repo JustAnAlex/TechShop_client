@@ -1,9 +1,9 @@
 import React, {useContext} from 'react';
+import {observer} from "mobx-react-lite";
 
 import styles from './Menu.module.scss'
 import getUniqueId from '../../utils/uniqueId';
 import { useEffect } from 'react';
-import {observer} from "mobx-react-lite";
 import {Context} from "../../index";
 
 const Menu = observer(() => {
@@ -34,8 +34,7 @@ const Menu = observer(() => {
             }
             <hr className={styles.hr}/>
             <div
-                style={{background:'darkgrey'}}
-                className={styles.menu_item}
+                className={`${styles.menu_item} ${styles.all_item}`}
                 onClick={()=> {
                     type.changeTypes(null)
                 }}
@@ -43,10 +42,10 @@ const Menu = observer(() => {
             </div>
             </>
                 :
-            <div>not data</div>
+            <div>no data</div>
             }
         </div>
-    );
+    )
 })
 
 export default Menu;
