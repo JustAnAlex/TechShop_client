@@ -1,9 +1,5 @@
-$black: rgb(0, 0, 0);
-$white: rgb(255, 255, 255);
-$plum: rgb(243, 121, 28);
-$transparent-white: rgb(255, 255, 255);
+@import "../../style/themeColor.scss";
 
-//width: calc(100% - 50px);
 .grid_container {
     background-color: $black;
     display: grid;
@@ -22,6 +18,9 @@ $transparent-white: rgb(255, 255, 255);
         flex-direction: column;
         align-items: center;
         color: $white;
+        border: 2px solid $orange;
+        border-radius: 20px;
+        padding: 5px;
 
         .description{
             font-size: 26px;
@@ -73,6 +72,7 @@ $transparent-white: rgb(255, 255, 255);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-bottom: 5px;
 
             .redirect {
                 background-color: $plum;
@@ -107,4 +107,3 @@ $transparent-white: rgb(255, 255, 255);
         }
     }
 }
-

@@ -1,9 +1,32 @@
-$black: rgb(0, 0, 0);
-$white: rgb(255, 255, 255);
-$plum: rgb(243, 121, 28);
-$transparent-white: rgb(255, 255, 255);
+@import "../../style/themeColor.scss";
 
-//width: calc(100% - 50px);
+
+@mixin button() {
+    background-color: $plum;
+    border-radius: 20px;
+    color: $black;
+    text-decoration:none;
+
+    padding: 10px 1px;
+    margin-left: 5px;
+
+    &:hover {
+        background: $white;
+    }
+
+    &:active {
+        background: $brown;
+    }
+}
+
+@mixin flex($fd, $ai, $jc) {
+    display: flex;
+    flex-direction: $fd;
+    align-items: $ai;
+    justify-content: $jc;
+}
+
+
 .grid_container {
     background-color: $black;
     display: grid;
@@ -22,6 +45,9 @@ $transparent-white: rgb(255, 255, 255);
         flex-direction: column;
         align-items: center;
         color: $white;
+        border: 2px solid $orange;
+        border-radius: 20px;
+        padding: 5px;
 
         .description{
             font-size: 26px;
@@ -69,30 +95,28 @@ $transparent-white: rgb(255, 255, 255);
         }
 
         .footer {
+            
             width: calc(100% - 33px);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-bottom: 5px;
 
             .redirect {
-                background-color: $plum;
-                border-radius: 20px;
-                padding: 10px 10px;
-                margin-left: 5px;
-                color: $white;
-                text-decoration:none;
+                @include button();
             }
             
             button {
-                width: auto;
-                height: calc(12.75% - 20px);
                 background-color: $plum;
                 border-radius: 20px;
-                padding: 10px 53px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                color: $black;
+                text-decoration:none;
+
+                width: auto;
+                height: calc(12.75% - 20px);
+                padding: 10px 13px;
                 cursor: pointer;
+
 
                 &:hover {
                     background: #fff;

@@ -16,19 +16,19 @@ const Navbar = observer(() => {
     }
 
     return (
-        <div className={styles.navbar}>
+        <nav className={styles.navbar}>
             <div className={styles.navbar_left}>
                 <Link className={styles.link} to='/shop'>Магазин</Link>
             </div>
             <div className={styles.navbar_right}>
                 {user.isAdmin &&
-                <div onClick={() => toPage('/admin_panel')} className={styles.img_wrapper}>
+                <div onClick={() => toPage('/admin')} className={styles.img_wrapper}>
                     <img src='logo_64x64.png' alt='logo'/>
                 </div>
                 }
                 <button className={styles.button} onClick={()=>exit()}>Выйти</button>
             </div>
-        </div>
+        </nav>
     )
 })
 

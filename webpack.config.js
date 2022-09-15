@@ -65,6 +65,10 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx'],
+        alias: {
+            '@fonts': path.resolve(__dirname, 'src/static/fonts'),
+            '@': path.resolve(__dirname, 'src'),
+        },
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -73,22 +77,36 @@ module.exports = {
 
     module: {
         rules: [
+            // {
+            //     test: /\.(s[ac]|c)ss$/i,
+            //     use: [
+            //         MiniCssExtractPlugin.loader,
+            //         'css-loader',
+            //         'postcss-loader',
+            //         'sass-loader',
+            //     ],
+            // },
             {
-                test: /\.(s[ac]|c)ss$/i,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'postcss-loader',
-                    'sass-loader',
-                ],
+                test: /\.(css|scss)$/,
+                use: ["style-loader","css-loader","sass-loader"]  
             },
             {
                 test: /\.(png|jpe?g|gif|svg|webp|ico)$/,
                 use: ['file-loader'],
-            },
+            }, // test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+            // {
+            //     test: /\.(woff2?|eot|ttf|otf)$/,
+            //     type: 'asset/resource',
+            // },
             {
-                test: /\.(woff2?|eot|ttf|otf)$/i,
-                use: ['file-loader'],
+                test: /\.(woff2?|eot|ttf|otf)$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts'
+                    }
+                }]
             },
             {
                 test: /\.jsx?$/,

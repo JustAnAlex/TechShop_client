@@ -1,7 +1,7 @@
 import React, {useContext, useRef} from "react";
 import {Link, useNavigate} from "react-router-dom";
 
-import styles from "./Registration.module.scss";
+import styles from "./auth.module.scss";
 import API from "../../http/API";
 import {Context} from "../../index";
 

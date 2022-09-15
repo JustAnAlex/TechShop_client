@@ -2,9 +2,9 @@ import React, {useContext} from 'react';
 import {Routes, Route} from 'react-router-dom';
 import {observer} from "mobx-react-lite";
 
-import Login from '../page/login/Login';
+import Login from '../page/authorization/Login';
 import MainPage from '../page/main/MainPage';
-import Registration from '../page/registration/Registration';
+import Registration from '../page/authorization/Registration';
 import About from "../page/About";
 import Basket from "../page/Basket";
 import AdminPanel from "../page/adminPage/AdminPanel";
@@ -15,7 +15,7 @@ const Routers = observer(() => {
 
     return (
         <Routes>
-            {user.isAuth && user.isAdmin && <Route path="admin_panel" element={<AdminPanel/>}/>}
+            {user.isAuth && user.isAdmin && <Route path="admin" element={<AdminPanel/>}/>}
             {user.isAuth ?
                 <>
                     <Route path="/shop" element={<MainPage/>} />
