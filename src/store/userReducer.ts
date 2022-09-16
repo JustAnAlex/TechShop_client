@@ -1,9 +1,9 @@
 import {makeAutoObservable} from "mobx";
 
 class UserReducer {
-    _isAuth = false
-    _isAdmin = false
-    _data = {}
+    _isAuth: boolean = false
+    _isAdmin: boolean = false
+    _data: IUser | null = null
 
     constructor() {
         makeAutoObservable(this)
@@ -13,7 +13,7 @@ class UserReducer {
         return this._isAuth
     }
 
-    set isAuth(bool) {
+    set isAuth(bool: boolean) {
         this._isAuth = bool
     }
 
@@ -21,15 +21,16 @@ class UserReducer {
         return this._isAdmin
     }
 
-    set isAdmin(bool) {
+    set isAdmin(bool: boolean) {
         this._isAdmin = bool
     }
 
     get data() {
-        return this._data
+        return this._data!
     }
 
-    set data(data) {
+    set data(data: IUser) {
+        console.log('frpm usrR',data)
         this._data = data
     }
 

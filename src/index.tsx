@@ -8,15 +8,21 @@ import TypeReducer from "./store/typeReducer";
 import DeviceReducer from "./store/deviceReducer";
 import UserReducer from "./store/userReducer";
 
-export const Context = createContext(null)
-const root = ReactDOM.createRoot(document.getElementById('root'))
+interface IContext {
+    device: typeof DeviceReducer,
+    type: typeof TypeReducer,
+    user: typeof UserReducer
+}
+const context = {
+    device: DeviceReducer,
+    type: TypeReducer,
+    user: UserReducer
+}
+export const Context = createContext<IContext>(context)
 
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
-    <Context.Provider value={{
-        device: DeviceReducer,
-        type: TypeReducer,
-        user: UserReducer
-    }}>
+    <Context.Provider value={context}>
         <div className={styles.app}>
             <App />
         </div>

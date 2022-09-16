@@ -2,10 +2,10 @@ import {makeAutoObservable, runInAction} from "mobx";
 import API from "../http/API";
 
 class TypesReducer {
-    isLoading = false
-    data = null
-    currentType = null
-    currentBrand = null
+    isLoading: boolean = false
+    data: Array<ITypes> | null = null
+    currentType: number | null = null
+    currentBrand: number | null = null
 
     constructor() {
         makeAutoObservable(this)
@@ -15,15 +15,12 @@ class TypesReducer {
         this.isLoading = true
         const answer = await API.loadTypes()
         runInAction(() => {
-            this.data = answer.data
+            this.data = answer
             this.isLoading = false
-            // if (answer.data.length) {
-            //     this.currentType = answer.data?.[0]?.id
-            // }
         })
     }
 
-    changeTypes(type) {
+    changeTypes(type : number | null) {
         this.currentType = type
     }
 

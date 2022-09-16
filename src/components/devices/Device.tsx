@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Device.module.scss'
 
-const Device = ({data}) => {
+const Device = ({data}: {data: IDevice}) => {
     return (
         <div className={styles.device}>
             <div className={styles.img_wrapper}>

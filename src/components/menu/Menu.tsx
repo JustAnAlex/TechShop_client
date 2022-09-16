@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useCallback, useContext} from 'react';
 import {observer} from "mobx-react-lite";
 
 import styles from './Menu.module.scss'
@@ -10,9 +10,12 @@ const Menu = observer(() => {
     const {type} = useContext(Context)
     const {isLoading, data} = type
 
-    useEffect( () => {type.loadTypes()
-        console.log('load types')
-    }, [] )
+    const fetchTypes = useCallback(() => type.loadTypes(), [type])
+
+    useEffect( () => {
+        console.log('load types only one time')
+        fetchTypes()
+    }, [fetchTypes] )
 
     return (
         <div className={styles.menu}>

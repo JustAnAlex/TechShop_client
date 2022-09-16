@@ -1,5 +1,4 @@
-import React from 'react';
-import {useEffect, useContext} from 'react';
+import React, {useEffect, useContext} from 'react';
 import {observer} from "mobx-react-lite";
 
 import styles from './Device.module.scss'
@@ -13,6 +12,7 @@ const DeviceList = observer(() => {
     useEffect(()=>{
         device.loadDevice(type.currentType, type.currentBrand)
         console.log('loadDevice')
+        // eslint-disable-next-line
     },[type.currentType, type.currentBrand])
 
     return (
@@ -20,7 +20,7 @@ const DeviceList = observer(() => {
             {
             (!device.isLoading && device.count)
                 ?
-            device.data.map(data =>
+            device.data!.map(data =>
                 <Device
                     key={getUniqueId()}
                     data={data}
@@ -28,12 +28,6 @@ const DeviceList = observer(() => {
             )
                 :
                 <>no data</>
-            // [{name:'', price:''}, {name:'', price:''}].map(data =>
-            //     <Device
-            //         key={getUniqueId()}
-            //         data={data}
-            //     />
-            // )
             }
         </div>
     );

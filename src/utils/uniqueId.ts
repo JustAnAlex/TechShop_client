@@ -7,6 +7,6 @@ function* uniqueId() {
 }
 
 const generic = uniqueId()
-const getUniqueId = () => generic.next().value
+const getUniqueId = (): number => generic.next().value || 0
 
 export default getUniqueId

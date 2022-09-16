@@ -5,24 +5,27 @@ import styles from "./auth.module.scss";
 import API from "../../http/API";
 import {Context} from "../../index";
 
-const Registration = () => {
+const Login = () => {
     const {user} = useContext(Context)
     const toPage = useNavigate()
 
     const formData = {
-        email: useRef(),
-        password: useRef()
+        email: useRef<HTMLInputElement>(null),
+        password: useRef<HTMLInputElement>(null)
     }
-    const sendData = async (e) => {
+    const sendData = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         const data = {
-            email: formData.email.current.value,
-            password: formData.password.current.value
+            email: formData?.email?.current?.value!,
+            password: formData?.password?.current?.value!
         }
-        API.registration(data)
+        API.login(data)
         .then((data)=>{
             user.data = data
             user.isAuth = true
+            if (data?.role === 'ADMIN') {
+                user.isAdmin = true
+            }
             toPage('/shop')
         })
         .catch(({message, response} )=> console.log(message, response?.data?.message))
@@ -31,8 +34,8 @@ const Registration = () => {
     return (
         <form className={styles.grid_container}>
             <div className={styles.root}>
-                <div className={styles.description}>Регистрация</div>
-
+                <div className={styles.description}>Авторизация</div>
+                
                 <label>Email address</label>
                 <input
                     className={styles.usernameFill}
@@ -50,22 +53,19 @@ const Registration = () => {
 
                 <div className={styles.footer}>
                     <div>
-                        <span>Есть аккаунт?</span>
-                        <Link className={styles.redirect} to='/login'>Войти</Link>
+                        <span>Нет аккаунта?</span>
+                        <Link className={styles.redirect} to='/registration'>Создать</Link>
                     </div>
                     <button
                         type='submit'
-                        onClick={(e) => sendData(e)}
-                    >Зарегистрировать
+                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => sendData(e)}
+                    >Войти
                     </button>
                 </div>
+
             </div>
         </form>
     )
 }
 
-export default Registration;
-
-
-
-
+export default Login;

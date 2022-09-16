@@ -1,0 +1,26 @@
+.contact_list {
+  width: 90%;
+  min-height: 70vh;
+}
+
+.wrapper {
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+  border: 2px solid rgb(0, 44, 102);
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+.info_wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.info {
+  color: black;
+  margin-right: 10px;
+  text-align: center;
+  height: 20px;
+}

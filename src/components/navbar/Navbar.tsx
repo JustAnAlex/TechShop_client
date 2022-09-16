@@ -26,7 +26,8 @@ const Navbar = observer(() => {
                     <img src='logo_64x64.png' alt='logo'/>
                 </div>
                 }
-                <button className={styles.button} onClick={()=>exit()}>Выйти</button>
+                { user.isAuth && <button className={styles.button} onClick={()=>exit()}>Выйти</button>}
+                
             </div>
         </nav>
     )
