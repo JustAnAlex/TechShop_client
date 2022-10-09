@@ -58,7 +58,7 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': JSON.stringify(process.env),
             // 'process.env.REACT_APP_API_URL': JSON.stringify('66'),
-            'process.env.REACT_APP_API_URL': isDev ? null : process.env.REACT_APP_API_URL,
+            'process.env.REACT_APP_API_URL': JSON.stringify(isDev ? null : process.env.REACT_APP_API_URL),
             // ...GET_ENV(),
         }),
         new CleanWebpackPlugin(),

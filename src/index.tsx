@@ -8,6 +8,8 @@ import TypeReducer from "./store/typeReducer";
 import DeviceReducer from "./store/deviceReducer";
 import UserReducer from "./store/userReducer";
 
+console.log(process.env.REACT_APP_API_URL)
+
 interface IContext {
     device: typeof DeviceReducer,
     type: typeof TypeReducer,
