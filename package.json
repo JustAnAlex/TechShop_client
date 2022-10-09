@@ -32,10 +32,12 @@
     "w_open": "webpack-dev-server --open",
     "w_watch": "webpack --mode development --watch",
     "w_historty": "webpack-dev-server --mode development --history-api-fallback",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start:cra": "react-scripts start",
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "build:cra": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "commit": "git add . && git commit -m 'addsomechanges' && git push origin master",
     "deploy": "git add . && git commit -m 'heroku' && git push heroku master"
   },
   "eslintConfig": {
