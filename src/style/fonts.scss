@@ -2,7 +2,17 @@
 	font-family: 'default-font';
 	font-style: normal;
 	font-weight: bold;
-	//src: url('@fonts/Montserrat-ExtraBold.ttf') format('truetype');
-	src: url('../static/fonts/Montserrat-ExtraBold.ttf') format('truetype');
+
+	src: url('@fonts/Montserrat-ExtraBold.ttf') format('truetype'); // for webpack
+	//src: url('../static/fonts/Montserrat-ExtraBold.ttf') format('truetype'); // for cra
+
+	// work
+	// src: url('static/fonts/Montserrat-ExtraBold.ttf') format('truetype');
+	// not work
+	// src: url('../static/fonts/Montserrat-ExtraBold.ttf') format('truetype');
+
+	//src: url('@fonts/Silkscreen-Bold.ttf') format('truetype'); // for webpack
+	//src: url('static/fonts/Silkscreen-Bold.ttf') format('truetype');  // for webpack
+	//src: url('../static/fonts/Silkscreen-Bold.ttf') format('truetype');  // for cra
 }
 

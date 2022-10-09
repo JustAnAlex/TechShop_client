@@ -1,1 +1,1 @@
-web: npm run start
+web: npm run w:dev; npm run serve:w

@@ -1,14 +1,13 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
+const URL = `http://${window.location.hostname}:${process.env.BACKEND_PORT}/`
+
 // axios create instance 
 const auth_host = axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
-    timeout: 10000
-});
-
-const host = axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
+    // baseURL: process.env.REACT_APP_API_URL,
+    baseURL: process.env.REACT_APP_API_URL || URL,
+    //baseURL: 'http://192.168.1.7:5000/',
     timeout: 10000
 });
 
@@ -24,7 +23,11 @@ auth_host.interceptors.response.use(({data}:{data:string}) => {
     return decoded;
 });
 
-
+const host = axios.create({
+    // baseURL: process.env.REACT_APP_API_URL,
+    baseURL: process.env.REACT_APP_API_URL || URL,
+    timeout: 10000
+});
 
 export default class API {
     static registration = async ({email, password}: IForm) => {
@@ -45,6 +48,7 @@ export default class API {
 
     static login = async ({email, password}: IForm) => {
         const answer:IUser = await auth_host.post('/api/user/login',{email, password})
+        //const answer:IUser = await axios.post('/api/user/login',{email, password})
         return answer
     }
 

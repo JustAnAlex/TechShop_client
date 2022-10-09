@@ -7,6 +7,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 
 const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+//const ReactRefreshPlugin = require('react-refresh-webpack-plugin');
+
+
+const dotenv = require('dotenv')
+dotenv.config()
+
 
 const GET_ENV = () => {
     let env = fs.readFileSync('.env', "utf8")
@@ -26,6 +32,8 @@ if (process.env.NODE_ENV === 'production') {
     target = 'browserslist';
 }
 
+console.log("process.env.NODE_ENV ", process.env.NODE_ENV)
+
 const plugins = [
     new MiniCssExtractPlugin({
         filename: '[name].[contenthash].css',
@@ -34,9 +42,10 @@ const plugins = [
         template: './public/index.html',
     }),
     new webpack.DefinePlugin({
-        ...GET_ENV(),
-        //'BrowserRouter': JSON.stringify(process.env.NODE_ENV || 'development2'),
-        '<BrowserRouter>': 'HashRouter',
+        'process.env': JSON.stringify(process.env),
+        // 'process.env.REACT_APP_API_URL': JSON.stringify('66'),
+        'process.env.REACT_APP_API_URL': null,
+        // ...GET_ENV(),
     }),
     new CleanWebpackPlugin(),
     new CopyPlugin({
@@ -54,17 +63,20 @@ module.exports = {
     mode,
     target,
     plugins,
+    devtool: 'inline-source-map',
     // devtool: 'source-map',
-    entry: './src/index.jsx',
+    entry: './src/index.tsx',
     devServer: {
         port: 3000,
         historyApiFallback: true,
-        proxy: {
-            '/api': 'http://localhost:5000',
-          },
+        // proxy: {
+        //     '/api': 'http://localhost:5000',
+        //   },
+        //hot: true
     },
+    //cache: false,
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '.tsx', '.ts'],
         alias: {
             '@fonts': path.resolve(__dirname, 'src/static/fonts'),
             '@': path.resolve(__dirname, 'src'),
@@ -94,20 +106,20 @@ module.exports = {
                 test: /\.(png|jpe?g|gif|svg|webp|ico)$/,
                 use: ['file-loader'],
             }, // test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-            // {
-            //     test: /\.(woff2?|eot|ttf|otf)$/,
-            //     type: 'asset/resource',
-            // },
             {
                 test: /\.(woff2?|eot|ttf|otf)$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: 'fonts'
-                    }
-                }]
+                type: 'asset/resource',
             },
+            // {
+            //     test: /\.(woff2?|eot|ttf|otf)$/,
+            //     use: [{
+            //         loader: 'file-loader',
+            //         options: {
+            //             name: '[name].[ext]',
+            //             outputPath: 'fonts'
+            //         }
+            //     }]
+            // },
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
@@ -123,6 +135,11 @@ module.exports = {
                 enforce: 'pre',
                 use: ['source-map-loader'],
             },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+              },
         ],
     },
 };

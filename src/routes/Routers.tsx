@@ -7,7 +7,6 @@ import MainPage from '../page/main/MainPage';
 import Registration from '../page/authorization/Registration';
 import About from "../page/About";
 import Basket from "../page/Basket";
-import AdminPanel from "../page/adminPage/AdminPanel";
 import {Context} from "../index";
 
 const Routers = observer(() => {
@@ -15,7 +14,7 @@ const Routers = observer(() => {
 
     return (
         <Routes>
-            {user.isAuth && user.isAdmin && <Route path="admin" element={<AdminPanel/>}/>}
+            {/* {user.isAuth && user.isAdmin && <Route path="admin" element={<AdminPanel/>}/>} */}
             {user.isAuth ?
                 <>
                     <Route path="/shop" element={<MainPage/>} />

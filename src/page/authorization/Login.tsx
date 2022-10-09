@@ -28,7 +28,14 @@ const Login = () => {
             }
             toPage('/shop')
         })
-        .catch(({message, response} )=> console.log(message, response?.data?.message))
+        // .catch(({message, response} )=> {
+        //     console.log(message, response?.data?.message)
+        //     alert([message, , 'sd', response?.data?.message])
+        // })
+        .catch((e)=> {
+            console.log(e)
+            alert(e)
+        })
     }
 
     return (
