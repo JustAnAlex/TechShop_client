@@ -5,10 +5,3 @@ module.exports = {
         "@babel/preset-typescript"
     ]
 }
-
-
-// module.exports = {
-//     presets:[
-//         "@babel/preset-react"
-//     ]
-// }

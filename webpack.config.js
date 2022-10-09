@@ -1,69 +1,30 @@
 const path = require('path');
 const webpack = require('webpack')
-const fs = require("fs");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
-
 const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-//const ReactRefreshPlugin = require('react-refresh-webpack-plugin');
-
 
 const dotenv = require('dotenv')
 dotenv.config()
 
+const isProd = process.env.NODE_ENV === 'production'
+const isDev = !isProd
 
-const GET_ENV = () => {
-    let env = fs.readFileSync('.env', "utf8")
-    env = env.split('\r\n').filter(el => el.trim() !== '')
-    env = env.map(e => e.split('='))
-    env.forEach((value, index, mass) => {
-        value[0] = 'process.env.' + value[0]
-        value[1] = JSON.stringify(value[1])
-    })
-    return Object.fromEntries(env)
-}
-
-let mode = 'development';
-let target = 'web';
-if (process.env.NODE_ENV === 'production') {
-    mode = 'production';
-    target = 'browserslist';
-}
+// let mode = 'development';
+// let target = 'web';
+// if (process.env.NODE_ENV === 'production') {
+//     mode = 'production';
+//     target = 'browserslist';
+// }
 
 console.log("process.env.NODE_ENV ", process.env.NODE_ENV)
 
-const plugins = [
-    new MiniCssExtractPlugin({
-        filename: '[name].[contenthash].css',
-    }),
-    new HtmlWebpackPlugin({
-        template: './public/index.html',
-    }),
-    new webpack.DefinePlugin({
-        'process.env': JSON.stringify(process.env),
-        // 'process.env.REACT_APP_API_URL': JSON.stringify('66'),
-        'process.env.REACT_APP_API_URL': null,
-        // ...GET_ENV(),
-    }),
-    new CleanWebpackPlugin(),
-    new CopyPlugin({
-        patterns: [
-            {
-                from: path.resolve(__dirname, 'public/logo_64x64.png'),
-                to: path.resolve(__dirname, 'dist', ),
-            },
-        ],
-    }),
-    new ReactRefreshPlugin(),
-];
-
 module.exports = {
-    mode,
-    target,
-    plugins,
-    devtool: 'inline-source-map',
+    mode: process.env.NODE_ENV,
+    target: 'web',
+    //devtool: 'inline-source-map',
     // devtool: 'source-map',
     entry: './src/index.tsx',
     devServer: {
@@ -87,6 +48,31 @@ module.exports = {
         filename: '[name].[hash].js',
     },
 
+    plugins: [
+        // new MiniCssExtractPlugin({  // fix it
+        //     filename: '[name].[contenthash].css',
+        // }),
+        new HtmlWebpackPlugin({
+            template: './public/index.html',
+        }),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(process.env),
+            // 'process.env.REACT_APP_API_URL': JSON.stringify('66'),
+            'process.env.REACT_APP_API_URL': null,
+            // ...GET_ENV(),
+        }),
+        new CleanWebpackPlugin(),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'public/logo_64x64.png'),
+                    to: path.resolve(__dirname, 'dist', ),
+                },
+            ],
+        }),
+        new ReactRefreshPlugin(),
+    ],
+
     module: {
         rules: [
             // {
@@ -102,6 +88,7 @@ module.exports = {
                 test: /\.(css|scss)$/,
                 use: ["style-loader","css-loader","sass-loader"]  
             },
+
             {
                 test: /\.(png|jpe?g|gif|svg|webp|ico)$/,
                 use: ['file-loader'],
@@ -113,13 +100,14 @@ module.exports = {
             // {
             //     test: /\.(woff2?|eot|ttf|otf)$/,
             //     use: [{
-            //         loader: 'file-loader',
+            //         loader: 'file-loader',   // fix it
             //         options: {
             //             name: '[name].[ext]',
             //             outputPath: 'fonts'
             //         }
             //     }]
             // },
+
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
@@ -131,15 +119,16 @@ module.exports = {
                 }
             },
             {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+
+            {
                 test: /\.js$/,  // for mobx
                 enforce: 'pre',
                 use: ['source-map-loader'],
             },
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
-              },
         ],
     },
 };
