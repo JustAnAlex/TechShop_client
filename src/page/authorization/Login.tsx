@@ -42,7 +42,7 @@ const Login = () => {
                 <input
                     className={styles.usernameFill}
                     ref={formData.email}
-                    placeholder="example@mail.tu"
+                    placeholder="example@mail.ru"
                     type='email'
                 />
 
